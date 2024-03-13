@@ -10,4 +10,11 @@ input{
     margin: 10px;
     border-radius: 10px;
     text-indent: 10px;
+    border: none;
+    outline: none;
+    transition: 0.5s;
+}
+
+input:focus{
+    transform: scale(1.02);
 }
