@@ -7,11 +7,13 @@
 }
 
 body{
-  background-image: url('https://img.freepik.com/premium-photo/nighttime-serenity-cartoonstyle-mountains-lake-night-landscape_954894-57676.jpg');
+  background-image: url('https://i.pinimg.com/originals/ef/70/85/ef7085be91d78613f0938fee57e45f4a.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .form-container{
-  background-color: #0d214c;
+  background-color: #190020;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +47,7 @@ body{
 }
 
 .footer{
-  background-color: #0d214c;
+  background-color: #190020;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   height: 100px;
   width: 100%;
