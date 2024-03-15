@@ -14,12 +14,3 @@ input{
     outline: none;
     transition: 0.5s;
 }
-
-input:focus{
-    background-color: #8107a8 !important;
-    color: white;
-}
-
-input:focus::placeholder{
-    color: white;
-}
