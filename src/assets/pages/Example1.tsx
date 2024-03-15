@@ -33,7 +33,9 @@ function Example1() {
                 )}
             </div>
 
-            <div className="footer"></div>
+            <div className="footer">
+                <p>Meu primeiro componente React</p>
+            </div>
         </>
     );
 }

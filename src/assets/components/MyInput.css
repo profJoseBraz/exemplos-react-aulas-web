@@ -16,5 +16,10 @@ input{
 }
 
 input:focus{
-    transform: scale(1.02);
+    background-color: #8107a8 !important;
+    color: white;
+}
+
+input:focus::placeholder{
+    color: white;
 }
