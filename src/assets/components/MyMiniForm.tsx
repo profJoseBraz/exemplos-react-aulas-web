@@ -1,12 +1,16 @@
+import { ChangeEvent } from "react";
 import MyButton from "./MyButton";
 import MyInput from "./MyInput";
 import './MyMiniForm.css'
 
 interface Props{
-    onSubmit: () => void;
+    inputValue: string;
+
+    onButtonClick: () => void;
+    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function MyMiniForm({onSubmit}: Props){
+function MyMiniForm({inputValue, onButtonClick: onSubmit, onInputChange}: Props){
     return(
         <div className="form-container">
             <MyInput
@@ -18,6 +22,8 @@ function MyMiniForm({onSubmit}: Props){
                 bgColorFocused="#8207a7"
                 placeHolderFontColor="black"
                 placeHolderFocusedFontColor="white"
+                onChange={onInputChange}
+                value={inputValue}
             />
             <MyButton onClick={onSubmit} height="50px">
                 adicionar

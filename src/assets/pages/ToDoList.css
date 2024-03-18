@@ -9,16 +9,17 @@
   }
   
   .example-1{
-    background-image: url('../../../public/bg-exemplo1.jpg');
+    background-image: url('/bg-exemplo1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
   }
   
   .title{
     width: 100%;
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 20px;
     border-bottom: 2px solid #f0f0f082;
+    padding: 10px;
   }
 
   .form-container{
@@ -54,20 +55,6 @@
     color: white;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   }
-  
-  .items-container .items .item{
-    background-color: red;
-    width: 100%;
-    margin: 5px;
-    text-align: center;
-    border: none;
-    background-color: rgba(128, 128, 128, 0.5);
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    animation: addItem 1s;
-  }
 
   .footer{
     background-color: #190020;
@@ -78,14 +65,4 @@
     align-items: center;
     padding: 10px;
     color: white;
-  }
-
-  @keyframes addItem{
-    from{
-      width: 0;
-      opacity: 0;
-    }to{
-      width: 100%;
-      opacity: 1;
-    }
   }
