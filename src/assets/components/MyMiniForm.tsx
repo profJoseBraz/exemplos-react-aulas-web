@@ -10,7 +10,7 @@ interface Props{
     onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function MyMiniForm({inputValue, onButtonClick: onSubmit, onInputChange}: Props){
+function MyMiniForm({inputValue, onButtonClick, onInputChange}: Props){
     return(
         <div className="form-container">
             <MyInput
@@ -25,7 +25,7 @@ function MyMiniForm({inputValue, onButtonClick: onSubmit, onInputChange}: Props)
                 onChange={onInputChange}
                 value={inputValue}
             />
-            <MyButton onClick={onSubmit} height="50px">
+            <MyButton onClick={onButtonClick} height="50px">
                 adicionar
             </MyButton>
         </div>

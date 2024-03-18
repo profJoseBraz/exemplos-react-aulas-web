@@ -3,10 +3,12 @@ import "./ToDoList.css";
 import MyMiniForm from "../components/MyMiniForm";
 import MyItem from "../components/MyItem";
 import MyTitle from "../components/MyTitle";
+import MyCount from "../components/MyCount";
 
-function Example1() {
+function ToDoList() {
     const [items, setItems] = useState<string[]>([]);
     const [newItem, setNewItem] = useState("");
+    const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
 
     const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         // alert(e.target.value);
@@ -36,11 +38,18 @@ function Example1() {
                         <div className="title">
                             {/* <h1>Meus itens</h1> */}
                             <MyTitle>Meus itens</MyTitle>
+                            {/* <h1>Itens adicionados: {items.length}</h1> */}
+                            <MyCount>Itens adicionados: {items.length > 0 ? items.length : "Lista vazia"}</MyCount>
                         </div>
                         {items.map((item, index) => (
                             <div className="item">
                                 {/* <h1 key={index}>{item}</h1> */}
-                                <MyItem key={index}>{item}</MyItem>
+                                <MyItem 
+                                key={index}
+                                bgColorSelected={selectedItemIndex === index ? "rgb(207,114,62,1)":""} 
+                                onSelectItem={() => {setSelectedItemIndex(index)}}
+                                onCheckItem={() => {alert("check")}}
+                                onRemoveItem={() => {alert("remove")}}>{item}</MyItem>
                             </div>
                         ))}
                     </div>
@@ -54,4 +63,4 @@ function Example1() {
     );
 }
 
-export default Example1;
+export default ToDoList;

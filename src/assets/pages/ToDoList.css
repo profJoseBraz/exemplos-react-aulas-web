@@ -20,6 +20,8 @@
     margin-bottom: 20px;
     border-bottom: 2px solid #f0f0f082;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .form-container{
@@ -46,7 +48,7 @@
     font-size: 18px;
     margin-top: 10px;
     background-color: rgba(0, 0, 0, 0.236);
-    width: 50%;
+    width: 80%;
     height: 95%;
     border-radius: 10px;
     overflow: auto;

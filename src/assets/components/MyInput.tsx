@@ -50,19 +50,19 @@ function MyInput(props : Props){
     
     return(
         <>
-        <input
-        className={style.MyInput} 
-        type={props.type} 
-        placeholder={props.placeholder} 
-        style={isFocused ? focusedStyle : normalStyle}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onChange={props.onChange}
-        value={props.value}/>
-        
-        <style> 
-            {placeHolder}
-        </style>
+            <input
+            className={style.MyInput} 
+            type={props.type} 
+            placeholder={props.placeholder} 
+            style={isFocused ? focusedStyle : normalStyle}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={props.onChange}
+            value={props.value}/>
+            
+            <style> 
+                {placeHolder}
+            </style>
         </>
     );
 }

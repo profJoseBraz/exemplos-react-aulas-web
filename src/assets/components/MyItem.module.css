@@ -6,29 +6,45 @@
     background-color: rgba(128, 128, 128, 0.5);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
-    padding: 10px;
     cursor: pointer;
     animation: addItem 1s;
     display: flex;
     justify-content: space-between;
+    transition: 0.5s;
   }
 
-  .MyItem_description{
+  .MyItemSelected{
+    background-color: red;
+  }
+
+  .MyItemDescription{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
   }
 
-  .MyItem_buttons{
+  .MyItemButtons{
     /* background-color: red; */
-    width: 15%;
-    justify-content: center;
+    /* width: 10%; */
+    justify-content: right;
     display: flex;
   }
 
-  .MyItem_container{
+  .MyItemContainer{
     display: flex;
+  }
+
+  .MyItemChecked{
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    color: rgba(128, 128, 128, 0.5);
+    transition: 0.5s;
+  }
+
+  .MyItemUnchecked{
+    text-decoration: none;
+    transition: 0.5s;
   }
 
   @keyframes addItem{
