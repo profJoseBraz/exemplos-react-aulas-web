@@ -17,11 +17,12 @@ function ToDoList() {
 
     const handleFormSubmit = () => {
         // setItems([...items, "item " + items.length]);
-        if (newItem.length > 0) {
+        if (newItem.trim().length > 0) {
             setItems([...items, newItem]);
             setNewItem("");
         } else {
             alert("Não é possível adicionar um novo item sem descrição!");
+            setNewItem("");
         }
     };
 
