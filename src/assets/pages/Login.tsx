@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [user, setUser] = useState("");
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
+    const [loginFail, setLoginFail] = useState(false);
 
     const navigate = useNavigate();
 
@@ -22,14 +23,29 @@ function Login() {
         if(user === "jose" && password === "1234"){
             navigate("/to-do-list");
         }else{
+            setLoginFail(true);
+            setUser("");
+            setPassword("");
             alert("Usuário ou senha incorreto!")
+            setLoginFail(false);
         }
     }
 
     return (
         <div className="login">
-            <MyInput type="text" bgColor="#f0f0f0" onChange={handleUserOnChange}/>
-            <MyInput type="password" bgColor="#f0f0f0" onChange={handlePasswordOnChange}/>
+            <MyInput 
+            type="text" 
+            bgColor="#f0f0f0" 
+            onChange={handleUserOnChange}
+            value={loginFail ? "" : user}
+            />
+            
+            <MyInput 
+            type="password" 
+            bgColor="#f0f0f0" 
+            onChange={handlePasswordOnChange}
+            value={loginFail ? "" : password}
+            />
             
             <MyButton onClick={handleOnClick}>Entrar</MyButton>
         </div>

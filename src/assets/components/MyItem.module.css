@@ -47,6 +47,10 @@
     transition: 0.5s;
   }
 
+  .MyItemRemoved{
+    animation: removeItem 1s;
+  }
+
   @keyframes addItem{
     from{
       width: 0;
@@ -54,5 +58,15 @@
     }to{
       width: 100%;
       opacity: 1;
+    }
+  }
+
+  @keyframes removeItem{
+    from{
+      width: 100%;
+      opacity: 1;
+    }to{
+      width: 0;
+      opacity: 0;
     }
   }

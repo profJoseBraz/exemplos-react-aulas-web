@@ -3,7 +3,10 @@ import style from './MyItem.module.css'
 import MyButton from "./MyButton";
 
 interface Props{
-    key: number;
+    keyValue: number;
+    
+    isChecked: boolean;
+    isRemoved: boolean;
 
     children: ReactNode;
     bgColorSelected?: string;
@@ -14,31 +17,21 @@ interface Props{
 }
 
 function MyItem(props: Props){
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleCheckItem = () => {
-        if(!isChecked){
-            setIsChecked(true);
-        }else{
-            setIsChecked(false);
-        }
-    }
-
     return(
         <>
-            <div className={style.MyItemContainer}>
+            <div className={props.isRemoved ? style.MyItemRemoved : style.MyItemContainer}>
                 <div className={style.MyItem} style={{backgroundColor: `${props.bgColorSelected}`}}>
                     <div 
                     className={style.MyItemDescription} 
                     onClick={props.onSelectItem}>
                         <h1
-                        className={isChecked ? style.MyItemChecked : style.MyItemUnchecked}  
-                        key={props.key}
+                        className={props.isChecked ? style.MyItemChecked : style.MyItemUnchecked}  
+                        key={props.keyValue}
                         >{props.children}</h1>
                     </div>
                     
                     <div className={style.MyItemButtons}>
-                        <MyButton onClick={handleCheckItem}>ok</MyButton>
+                        <MyButton onClick={props.onCheckItem}>ok</MyButton>
                         <MyButton onClick={props.onRemoveItem}>rm</MyButton>
                     </div>
                 </div>

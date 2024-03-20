@@ -7,6 +7,8 @@ import MyCount from "../components/MyCount";
 
 function ToDoList() {
     const [items, setItems] = useState<string[]>([]);
+    const [checkedItems, setCheckedItems] = useState<number[]>([]);
+    const [removedItems, setRemovedItems] = useState<number[]>([]);
     const [newItem, setNewItem] = useState("");
     const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
 
@@ -47,10 +49,12 @@ function ToDoList() {
                         </MyCount>
                     </div>
                     {items.map((item, index) => (
-                        <div className="item">
+                        <div key={index} className="item">
                             {/* <h1 key={index}>{item}</h1> */}
                             <MyItem
-                                key={index}
+                                keyValue={index}
+                                isChecked={checkedItems.includes(index) ? true : false}
+                                isRemoved={removedItems.includes(index) ? true : false}
                                 bgColorSelected={
                                     selectedItemIndex === index
                                         ? "rgb(207,114,62,1)"
@@ -60,10 +64,30 @@ function ToDoList() {
                                     setSelectedItemIndex(index);
                                 }}
                                 onCheckItem={() => {
-                                    alert("check");
+                                    if(checkedItems.includes(index)){
+                                        const newCheckedItems = [...checkedItems];
+                                        newCheckedItems.splice(checkedItems.indexOf(index), 1);
+                                        setCheckedItems(newCheckedItems);   
+                                    }else{
+                                        setCheckedItems([...checkedItems, index])
+                                    }
                                 }}
                                 onRemoveItem={() => {
-                                    alert("remove");
+                                    setRemovedItems([...removedItems, index]);
+
+                                    setTimeout(() => {
+                                        const newItems = [...items];
+                                        newItems.splice(index, 1);
+                                        setItems(newItems);
+
+                                        const newCheckedItems = [...checkedItems];
+                                        newCheckedItems.splice(checkedItems.indexOf(index), 1);
+                                        setCheckedItems(newCheckedItems);
+
+                                        const newRemovedItems = [...removedItems];
+                                        newRemovedItems.splice(removedItems.indexOf(index), 1);
+                                        setRemovedItems(newRemovedItems);
+                                    }, 1000);
                                 }}
                             >
                                 {item}
