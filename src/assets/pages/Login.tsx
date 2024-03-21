@@ -13,40 +13,40 @@ function Login() {
 
     const handleUserOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUser(e.target.value);
-    }
+    };
 
     const handlePasswordOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
-    }
+    };
 
     const handleOnClick = () => {
-        if(user === "jose" && password === "1234"){
+        if (user === "jose" && password === "1234") {
             navigate("/to-do-list");
-        }else{
+        } else {
             setLoginFail(true);
             setUser("");
             setPassword("");
-            alert("Usuário ou senha incorreto!")
+            alert("Usuário ou senha incorreto!");
             setLoginFail(false);
         }
-    }
+    };
 
     return (
         <div className="login">
-            <MyInput 
-            type="text" 
-            bgColor="#f0f0f0" 
-            onChange={handleUserOnChange}
-            value={loginFail ? "" : user}
+            <MyInput
+                type="text"
+                bgColor="#f0f0f0"
+                onChange={handleUserOnChange}
+                value={loginFail ? "" : user}
             />
-            
-            <MyInput 
-            type="password" 
-            bgColor="#f0f0f0" 
-            onChange={handlePasswordOnChange}
-            value={loginFail ? "" : password}
+
+            <MyInput
+                type="password"
+                bgColor="#f0f0f0"
+                onChange={handlePasswordOnChange}
+                value={loginFail ? "" : password}
             />
-            
+
             <MyButton onClick={handleOnClick}>Entrar</MyButton>
         </div>
     );

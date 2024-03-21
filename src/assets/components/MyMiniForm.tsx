@@ -1,17 +1,17 @@
 import { ChangeEvent } from "react";
 import MyButton from "./MyButton";
 import MyInput from "./MyInput";
-import './MyMiniForm.css'
+import "./MyMiniForm.css";
 
-interface Props{
+interface Props {
     inputValue: string;
 
     onButtonClick: () => void;
     onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function MyMiniForm({inputValue, onButtonClick, onInputChange}: Props){
-    return(
+function MyMiniForm({ inputValue, onButtonClick, onInputChange }: Props) {
+    return (
         <div className="form-container">
             <MyInput
                 type="text"

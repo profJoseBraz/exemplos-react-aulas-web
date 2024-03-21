@@ -1,12 +1,12 @@
 import { ReactNode, useState } from "react";
-import style from './MyItem.module.css'
+import style from "./MyItem.module.css";
 import MyButton from "./MyButton";
 
-interface Props{
+interface Props {
     keyValue: number;
-    
+
     isChecked: boolean;
-    isRemoved: boolean;
+    toRemove: boolean;
 
     children: ReactNode;
     bgColorSelected?: string;
@@ -16,28 +16,46 @@ interface Props{
     onRemoveItem: () => void;
 }
 
-function MyItem(props: Props){
-    return(
+function MyItem(props: Props) {
+    return (
         <>
-            <div className={props.isRemoved ? style.MyItemRemoved : style.MyItemContainer}>
-                <div className={style.MyItem} style={{backgroundColor: `${props.bgColorSelected}`}}>
-                    <div 
-                    className={style.MyItemDescription} 
-                    onClick={props.onSelectItem}>
+            <div
+                className={
+                    props.toRemove ? style.MyItemRemoved : style.MyItemContainer
+                }
+            >
+                <div
+                    className={style.MyItem}
+                    style={{ backgroundColor: `${props.bgColorSelected}` }}
+                >
+                    <div
+                        className={style.MyItemDescription}
+                        onClick={props.onSelectItem}
+                    >
                         <h1
-                        className={props.isChecked ? style.MyItemChecked : style.MyItemUnchecked}  
-                        key={props.keyValue}
-                        >{props.children}</h1>
+                            className={
+                                props.isChecked
+                                    ? style.MyItemChecked
+                                    : style.MyItemUnchecked
+                            }
+                            key={props.keyValue}
+                        >
+                            {props.children}
+                        </h1>
                     </div>
-                    
+
                     <div className={style.MyItemButtons}>
-                        <MyButton onClick={props.onCheckItem}>ok</MyButton>
-                        <MyButton onClick={props.onRemoveItem}>rm</MyButton>
+                        <MyButton onClick={props.onCheckItem} width="70px">
+                            ok
+                        </MyButton>
+                        <MyButton onClick={props.onRemoveItem} width="70px">
+                            rm
+                        </MyButton>
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default MyItem
+export default MyItem;

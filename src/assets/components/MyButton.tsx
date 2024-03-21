@@ -1,21 +1,28 @@
-import { ReactNode } from 'react';
-import style from './MyButton.module.css'
+import { ReactNode } from "react";
+import style from "./MyButton.module.css";
 
-interface Props{
+interface Props {
     children: ReactNode;
     height?: string;
+    width?: string;
     bgColor?: string;
-    onClick: () => void
+    onClick: () => void;
 }
 
-function MyButton(props : Props){
-    return(
-        <button 
-        className={style.MyButton}
-        onClick={props.onClick} 
-        style={{height:`${props.height}`, backgroundColor:`${props.bgColor}`}}
-        >{props.children}</button>
+function MyButton(props: Props) {
+    return (
+        <button
+            className={style.MyButton}
+            onClick={props.onClick}
+            style={{
+                width: `${props.width}`,
+                height: `${props.height}`,
+                backgroundColor: `${props.bgColor}`,
+            }}
+        >
+            {props.children}
+        </button>
     );
 }
 
-export default MyButton
+export default MyButton;

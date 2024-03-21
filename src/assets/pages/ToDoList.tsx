@@ -11,6 +11,8 @@ function ToDoList() {
     const [removedItems, setRemovedItems] = useState<number[]>([]);
     const [newItem, setNewItem] = useState("");
     const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+    const [isRemoving, setIsRemoving] = useState(false);
+    const [messageShowing, setMessageShowing] = useState(false);
 
     const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         // alert(e.target.value);
@@ -48,46 +50,88 @@ function ToDoList() {
                             {items.length > 0 ? items.length : "Lista vazia"}
                         </MyCount>
                     </div>
+
                     {items.map((item, index) => (
                         <div key={index} className="item">
                             {/* <h1 key={index}>{item}</h1> */}
                             <MyItem
                                 keyValue={index}
-                                isChecked={checkedItems.includes(index) ? true : false}
-                                isRemoved={removedItems.includes(index) ? true : false}
+                                isChecked={
+                                    checkedItems.includes(index) ? true : false
+                                }
+                                toRemove={
+                                    removedItems.includes(index) ? true : false
+                                }
                                 bgColorSelected={
                                     selectedItemIndex === index
                                         ? "rgb(207,114,62,1)"
                                         : ""
                                 }
                                 onSelectItem={() => {
-                                    setSelectedItemIndex(index);
+                                    if (selectedItemIndex === index) {
+                                        setSelectedItemIndex(-1);
+                                    } else {
+                                        setSelectedItemIndex(index);
+                                    }
                                 }}
                                 onCheckItem={() => {
-                                    if(checkedItems.includes(index)){
-                                        const newCheckedItems = [...checkedItems];
-                                        newCheckedItems.splice(checkedItems.indexOf(index), 1);
-                                        setCheckedItems(newCheckedItems);   
-                                    }else{
-                                        setCheckedItems([...checkedItems, index])
+                                    if (checkedItems.includes(index)) {
+                                        const newCheckedItems = [
+                                            ...checkedItems,
+                                        ];
+                                        newCheckedItems.splice(
+                                            checkedItems.indexOf(index),
+                                            1
+                                        );
+                                        setCheckedItems(newCheckedItems);
+                                    } else {
+                                        setCheckedItems([
+                                            ...checkedItems,
+                                            index,
+                                        ]);
                                     }
                                 }}
                                 onRemoveItem={() => {
-                                    setRemovedItems([...removedItems, index]);
+                                    if (!isRemoving) {
+                                        setIsRemoving(true);
 
-                                    setTimeout(() => {
-                                        const newItems = [...items];
-                                        newItems.splice(index, 1);
-                                        setItems(newItems);
+                                        setRemovedItems([
+                                            ...removedItems,
+                                            index,
+                                        ]);
 
-                                        const newCheckedItems = [...checkedItems];
-                                        newCheckedItems.splice(checkedItems.indexOf(index), 1);
-                                        setCheckedItems(newCheckedItems);
+                                        setTimeout(() => {
+                                            const newItems = [...items];
+                                            newItems.splice(index, 1);
+                                            setItems(newItems);
 
-                                        const newRemovedItems = [...removedItems];
-                                        newRemovedItems.splice(removedItems.indexOf(index), 1);
-                                        setRemovedItems(newRemovedItems);
-                                    }, 1000);
+                                            const newCheckedItems = [
+                                                ...checkedItems,
+                                            ];
+                                            newCheckedItems.splice(
+                                                checkedItems.indexOf(index),
+                                                1
+                                            );
+                                            setCheckedItems(newCheckedItems);
+
+                                            const newRemovedItems = [
+                                                ...removedItems,
+                                            ];
+                                            newRemovedItems.splice(
+                                                removedItems.indexOf(index),
+                                                1
+                                            );
+                                            setRemovedItems(newRemovedItems);
+
+                                            setIsRemoving(false);
+
+                                            setMessageShowing(true);
+
+                                            setTimeout(() => {
+                                                setMessageShowing(false);
+                                            }, 5000);
+                                        }, 950);
+                                    }
                                 }}
                             >
                                 {item}
@@ -100,6 +144,16 @@ function ToDoList() {
 
             <div className="footer">
                 <p>Meu primeiro componente React</p>
+            </div>
+
+            <div
+                className={
+                    messageShowing
+                        ? "message message-in"
+                        : "message message-out"
+                }
+            >
+                <h1>Item exluído com sucesso</h1>
             </div>
         </div>
     );
