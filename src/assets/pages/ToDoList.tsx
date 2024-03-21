@@ -6,19 +6,38 @@ import MyTitle from "../components/MyTitle";
 import MyCount from "../components/MyCount";
 
 function ToDoList() {
+    
+    // UseState que atualizará a lista de itens
     const [items, setItems] = useState<string[]>([]);
-    const [checkedItems, setCheckedItems] = useState<number[]>([]);
-    const [removedItems, setRemovedItems] = useState<number[]>([]);
-    const [newItem, setNewItem] = useState("");
-    const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
-    const [isRemoving, setIsRemoving] = useState(false);
-    const [messageShowing, setMessageShowing] = useState(false);
 
+    // UseState que atualizará a lista de itens checados
+    const [checkedItems, setCheckedItems] = useState<number[]>([]); 
+    
+    // UseState que atualizará a lista de itens removidos
+    const [removedItems, setRemovedItems] = useState<number[]>([]); 
+    
+    // UseState que atualizará o valor do novo item
+    const [newItem, setNewItem] = useState(""); 
+    
+    // UseState que atualizará o valor referente ao índice do item selecionado
+    const [selectedItemIndex, setSelectedItemIndex] = useState(-1); 
+    
+    // UseState bolano que verificará se um item está sendo removido
+    const [isRemoving, setIsRemoving] = useState(false); 
+    
+    // UseState boleano que verificará se uma mensagem está sendo mostrada. Deverá ser true enquanto a mensagem estiver sendo renderizada
+    const [isMessageShowing, setIsMessageShowing] = useState(false);  
+    
+    // UseState que servirá para guardar a referência ao TimeOut da mensagem de exclusão
+    const [timerId, setTimerId] = useState(0);
+
+    //Manipulador do evento de OnChange do Input refererente ao novo item
     const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         // alert(e.target.value);
         setNewItem(e.target.value);
     };
 
+    //Manipuador do evento de clique no botão do componente MyMiniForm 
     const handleFormSubmit = () => {
         // setItems([...items, "item " + items.length]);
         if (newItem.trim().length > 0) {
@@ -29,6 +48,84 @@ function ToDoList() {
             setNewItem("");
         }
     };
+    
+    const handleOnSelectItem = (index : number) => {
+        if (selectedItemIndex === index) {
+            setSelectedItemIndex(-1);
+        } else {
+            setSelectedItemIndex(index);
+        }
+    }
+
+    const handleOnCheckItem = (index : number) => {
+        if (checkedItems.includes(index)) {
+            const newCheckedItems = [
+                ...checkedItems,
+            ];
+            newCheckedItems.splice(
+                checkedItems.indexOf(index),
+                1
+            );
+            setCheckedItems(newCheckedItems);
+        } else {
+            setCheckedItems([
+                ...checkedItems,
+                index,
+            ]);
+        }
+    }
+
+    // Manipulador do evento de exclusao com animação
+    const handleOnRemoveItem = (index : number) => {
+        clearTimeout(timerId)
+        if (!isRemoving) {
+            setIsRemoving(true);
+
+            setRemovedItems([
+                ...removedItems,
+                index,
+            ]);
+
+            setTimeout(() => {
+                const newItems = [...items];
+                newItems.splice(index, 1);
+                setItems(newItems);
+
+                const newCheckedItems = [
+                    ...checkedItems,
+                ];
+                newCheckedItems.splice(
+                    checkedItems.indexOf(index),
+                    1
+                );
+                setCheckedItems(newCheckedItems);
+
+                const newRemovedItems = [
+                    ...removedItems,
+                ];
+                newRemovedItems.splice(
+                    removedItems.indexOf(index),
+                    1
+                );
+                setRemovedItems(newRemovedItems);
+
+                setIsRemoving(false);
+
+                setIsMessageShowing(true);
+
+                setTimerId(setTimeout(() => {
+                    setIsMessageShowing(false);
+                }, 2000))
+            }, 950);
+        }
+    }
+
+    // Manipulador do evento de exclusão de itens (usar com os alunos)
+    const handleOnRemoveItemSimple = (index : number) => {
+        const newItems = [...items];
+        newItems.splice(index, 1);
+        setItems(newItems);
+    }
 
     return (
         <div className="to-do-list">
@@ -68,70 +165,14 @@ function ToDoList() {
                                         : ""
                                 }
                                 onSelectItem={() => {
-                                    if (selectedItemIndex === index) {
-                                        setSelectedItemIndex(-1);
-                                    } else {
-                                        setSelectedItemIndex(index);
-                                    }
+                                    handleOnSelectItem(index)
                                 }}
                                 onCheckItem={() => {
-                                    if (checkedItems.includes(index)) {
-                                        const newCheckedItems = [
-                                            ...checkedItems,
-                                        ];
-                                        newCheckedItems.splice(
-                                            checkedItems.indexOf(index),
-                                            1
-                                        );
-                                        setCheckedItems(newCheckedItems);
-                                    } else {
-                                        setCheckedItems([
-                                            ...checkedItems,
-                                            index,
-                                        ]);
-                                    }
+                                    handleOnCheckItem(index)
                                 }}
                                 onRemoveItem={() => {
-                                    if (!isRemoving) {
-                                        setIsRemoving(true);
-
-                                        setRemovedItems([
-                                            ...removedItems,
-                                            index,
-                                        ]);
-
-                                        setTimeout(() => {
-                                            const newItems = [...items];
-                                            newItems.splice(index, 1);
-                                            setItems(newItems);
-
-                                            const newCheckedItems = [
-                                                ...checkedItems,
-                                            ];
-                                            newCheckedItems.splice(
-                                                checkedItems.indexOf(index),
-                                                1
-                                            );
-                                            setCheckedItems(newCheckedItems);
-
-                                            const newRemovedItems = [
-                                                ...removedItems,
-                                            ];
-                                            newRemovedItems.splice(
-                                                removedItems.indexOf(index),
-                                                1
-                                            );
-                                            setRemovedItems(newRemovedItems);
-
-                                            setIsRemoving(false);
-
-                                            setMessageShowing(true);
-
-                                            setTimeout(() => {
-                                                setMessageShowing(false);
-                                            }, 5000);
-                                        }, 950);
-                                    }
+                                    handleOnRemoveItem(index)
+                                    // handleOnRemoveItemSimple(index);
                                 }}
                             >
                                 {item}
@@ -148,7 +189,7 @@ function ToDoList() {
 
             <div
                 className={
-                    messageShowing
+                    isMessageShowing
                         ? "message message-in"
                         : "message message-out"
                 }

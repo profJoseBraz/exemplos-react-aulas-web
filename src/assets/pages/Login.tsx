@@ -3,11 +3,14 @@ import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Login() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [loginFail, setLoginFail] = useState(false);
+
+    const [cookie, setCookie, removeCookie] = useCookies(["autenticação"]);
 
     const navigate = useNavigate();
 
@@ -21,6 +24,7 @@ function Login() {
 
     const handleOnClick = () => {
         if (user === "jose" && password === "1234") {
+            setCookie("autenticação", "josé");
             navigate("/to-do-list");
         } else {
             setLoginFail(true);
