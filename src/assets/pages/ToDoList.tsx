@@ -1,9 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "./ToDoList.css";
 import MyMiniForm from "../components/MyMiniForm";
 import MyItem from "../components/MyItem";
 import MyTitle from "../components/MyTitle";
 import MyCount from "../components/MyCount";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 function ToDoList() {
     
@@ -28,14 +30,29 @@ function ToDoList() {
     // UseState boleano que verificará se uma mensagem está sendo mostrada. Deverá ser true enquanto a mensagem estiver sendo renderizada
     const [isMessageShowing, setIsMessageShowing] = useState(false);  
     
+    const [isMessageInTransition, setIsMessageInTransition] = useState(false);
+
     // UseState que servirá para guardar a referência ao TimeOut da mensagem de exclusão
     const [timerId, setTimerId] = useState(0);
+
+    const [timerId2, setTimerId2] = useState(0);
 
     //Manipulador do evento de OnChange do Input refererente ao novo item
     const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         // alert(e.target.value);
         setNewItem(e.target.value);
     };
+
+    const [cookies] = useCookies(["auth"]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (cookies["auth"] !== "josé") {
+            // Se não estiver, redirecione o usuário de volta para a página de login
+            // alert("Realize o login para continuar!")
+            navigate("/");
+        }
+    },[cookies, navigate])
 
     //Manipuador do evento de clique no botão do componente MyMiniForm 
     const handleFormSubmit = () => {
@@ -78,6 +95,7 @@ function ToDoList() {
     // Manipulador do evento de exclusao com animação
     const handleOnRemoveItem = (index : number) => {
         clearTimeout(timerId)
+        clearTimeout(timerId2)
         if (!isRemoving) {
             setIsRemoving(true);
 
@@ -113,9 +131,15 @@ function ToDoList() {
 
                 setIsMessageShowing(true);
 
+                setIsMessageInTransition(true)
+
                 setTimerId(setTimeout(() => {
                     setIsMessageShowing(false);
                 }, 2000))
+
+                setTimerId2(setTimeout(() => {
+                    setIsMessageInTransition(false);
+                }, 4000))
             }, 950);
         }
     }
@@ -153,29 +177,16 @@ function ToDoList() {
                             {/* <h1 key={index}>{item}</h1> */}
                             <MyItem
                                 keyValue={index}
-                                isChecked={
-                                    checkedItems.includes(index) ? true : false
-                                }
-                                toRemove={
-                                    removedItems.includes(index) ? true : false
-                                }
-                                bgColorSelected={
-                                    selectedItemIndex === index
-                                        ? "rgb(207,114,62,1)"
-                                        : ""
-                                }
-                                onSelectItem={() => {
-                                    handleOnSelectItem(index)
-                                }}
-                                onCheckItem={() => {
-                                    handleOnCheckItem(index)
-                                }}
+                                isChecked={checkedItems.includes(index) ? true : false}
+                                toRemove={removedItems.includes(index) ? true : false}
+                                bgColorSelected={selectedItemIndex === index ? "rgb(207,114,62,1)" : ""}
+                                onSelectItem={() => {handleOnSelectItem(index)}}
+                                onCheckItem={() => {handleOnCheckItem(index)}}
                                 onRemoveItem={() => {
                                     handleOnRemoveItem(index)
-                                    // handleOnRemoveItemSimple(index);
+                                    /*handleOnRemoveItemSimple(index);*/
                                 }}
-                            >
-                                {item}
+                            >{item}
                             </MyItem>
                         </div>
                     ))}
@@ -186,16 +197,11 @@ function ToDoList() {
             <div className="footer">
                 <p>Meu primeiro componente React</p>
             </div>
-
-            <div
-                className={
-                    isMessageShowing
-                        ? "message message-in"
-                        : "message message-out"
-                }
-            >
-                <h1>Item exluído com sucesso</h1>
-            </div>
+             
+            {isMessageInTransition &&
+            <div className={`message ${isMessageShowing ? "message-in" : "message-out"}`}>
+                <p>Item exluído com sucesso</p>
+            </div>}
         </div>
     );
 }

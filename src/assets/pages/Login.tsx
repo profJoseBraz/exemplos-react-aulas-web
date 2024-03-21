@@ -10,7 +10,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [loginFail, setLoginFail] = useState(false);
 
-    const [cookie, setCookie, removeCookie] = useCookies(["autenticação"]);
+    const [cookie, setCookie, removeCookie] = useCookies(["auth"]);
 
     const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ function Login() {
 
     const handleOnClick = () => {
         if (user === "jose" && password === "1234") {
-            setCookie("autenticação", "josé");
+            setCookie("auth", "josé");
             navigate("/to-do-list");
         } else {
             setLoginFail(true);

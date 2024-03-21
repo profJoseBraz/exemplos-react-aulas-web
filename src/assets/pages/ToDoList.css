@@ -78,34 +78,36 @@
     color: white;
     background-color: green;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 2px solid darkgreen;
+    /* visibility: hidden; */
 }
 
 .message-in{
-    animation: message 0.5s;
-    opacity: 1;
+    animation: message-in 0.5s;
 }
 
 .message-out{
     animation: message-out 0.5s;
-    opacity: 0;
-    animation-fill-mode: forwards
+    animation-fill-mode: forwards   
 }
 
-@keyframes message{
+@keyframes message-in{
     from{
         opacity: 0;
+        visibility: hidden;
     }to{
         opacity: 1;
+        visibility: visible;
     }
 }
 
 @keyframes message-out{
     from{
         opacity: 1;
-        display: block;
+        visibility: visible;
     }to{
         opacity: 0;
-        display: none;
+        visibility: hidden;
     }
 }
