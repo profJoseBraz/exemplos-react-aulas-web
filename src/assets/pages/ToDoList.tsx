@@ -145,11 +145,11 @@ function ToDoList() {
     }
 
     // Manipulador do evento de exclusão de itens (usar com os alunos)
-    const handleOnRemoveItemSimple = (index : number) => {
-        const newItems = [...items];
-        newItems.splice(index, 1);
-        setItems(newItems);
-    }
+    // const handleOnRemoveItemSimple = (index : number) => {
+    //     const newItems = [...items];
+    //     newItems.splice(index, 1);
+    //     setItems(newItems);
+    // }
 
     return (
         <div className="to-do-list">
