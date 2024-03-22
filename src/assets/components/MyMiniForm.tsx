@@ -16,16 +16,17 @@ function MyMiniForm({ inputValue, onButtonClick, onInputChange }: Props) {
             <MyInput
                 type="text"
                 placeholder="Digite algo"
-                fontColor="black"
-                bgColor="#f0f0f0"
-                fontFocusedColor="white"
-                bgColorFocused="#8207a7"
-                placeHolderFontColor="black"
-                placeHolderFocusedFontColor="white"
                 onChange={onInputChange}
                 value={inputValue}
+                style={{
+                    width: '500px', 
+                    height: '50px'
+                }}
+                focusStyle={{
+                    backgroundColor: '#8b129d'
+                }}
             />
-            <MyButton onClick={onButtonClick} height="50px">
+            <MyButton onClick={onButtonClick} style={{height: '50px'}}>
                 adicionar
             </MyButton>
         </div>

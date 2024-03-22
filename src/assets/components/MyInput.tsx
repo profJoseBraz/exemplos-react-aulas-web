@@ -1,20 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { CSSProperties, ChangeEvent, useState } from "react";
 import style from "./MyInput.module.css";
 
 interface Props {
     type: string;
-
     value?: string;
-
-    bgColor?: string;
-    fontColor?: string;
-
-    bgColorFocused?: string;
-    fontFocusedColor?: string;
-
     placeholder?: string;
-    placeHolderFontColor?: string;
-    placeHolderFocusedFontColor?: string;
+    
+    style?: CSSProperties;
+    focusStyle?: CSSProperties;
 
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -32,24 +25,16 @@ function MyInput(props: Props) {
         setIsFocused(false);
     };
 
-    //Constante que guarda os estilos pedrões do input
-    const normalStyle = {
-        backgroundColor: `${props.bgColor}`,
-        color: `${props.fontColor}`,
-    };
+    // const placeHolder = `::placeholder {${
+    //     isFocused
+    //         ? `color: red`
+    //         : `color: blue`
+    // }}`;
 
-    //Constante que guarda os estilos modificados do input. Por exemplo, quando o input estiver focado ou com hover pode ser aplicado esse estilo em vez do estilo padrão
-    const focusedStyle = {
-        backgroundColor: `${props.bgColorFocused}`,
-        color: `${props.fontFocusedColor}`,
-        // color: `${props.fontFocusedColor}`
+    const combinedStyle: CSSProperties = {
+        ...props.style,
+        ...(isFocused && props.focusStyle),
     };
-
-    const placeHolder = `::placeholder {${
-        isFocused
-            ? `color: ${props.placeHolderFocusedFontColor}`
-            : `color: ${props.placeHolderFontColor}`
-    }}`;
 
     return (
         <>
@@ -57,14 +42,14 @@ function MyInput(props: Props) {
                 className={style.MyInput}
                 type={props.type}
                 placeholder={props.placeholder}
-                style={isFocused ? focusedStyle : normalStyle}
+                style={combinedStyle}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={props.onChange}
                 value={props.value}
             />
 
-            <style>{placeHolder}</style>
+            {/* <style>{placeHolder}</style> */}
         </>
     );
 }

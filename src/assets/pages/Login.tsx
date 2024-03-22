@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { CSSProperties, ChangeEvent, useState } from "react";
 import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";    
 import { useNavigate } from "react-router-dom";
@@ -36,27 +36,48 @@ function Login() {
             setLoginFail(false);
         }
     };
-
+    
     return (
         <div className={Style.LoginContainer}>
             <div className={Style.LoginForm}>
                 <MyInput
                     type="text"
                     placeholder="Usuário"
-                    bgColor="#f0f0f0"
                     onChange={handleUserOnChange}
                     value={loginFail ? "" : user}
+                    style={{
+                        width: '500px', 
+                        height: '50px', 
+                        backgroundColor: '#f0f0f0'
+                    }}
+                    focusStyle={{
+                        backgroundColor: 'red',
+                    }}
                 />
 
                 <MyInput
                     type="password"
                     placeholder="Senha"
-                    bgColor="#f0f0f0"
                     onChange={handlePasswordOnChange}
                     value={loginFail ? "" : password}
+                    style={{
+                        width: '500px', 
+                        height: '50px', 
+                        backgroundColor: '#f0f0f0'
+                    }}
+                    focusStyle={{
+                        backgroundColor: 'red',
+                    }}
                 />
 
-                <MyButton onClick={handleOnClick}>Entrar</MyButton>
+                <MyButton 
+                    onClick={handleOnClick}
+                    style={{
+                        fontSize: '20px',
+                        width: 'fit-content',
+                        backgroundColor: '#f0f0f0'
+                    }}
+                >Entrar</MyButton>
             </div>
         </div>
     );
