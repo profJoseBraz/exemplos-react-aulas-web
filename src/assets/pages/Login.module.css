@@ -1,0 +1,19 @@
+.LoginContainer{
+    /* background-color: red; */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-size: 32px !important;
+}
+
+.LoginForm{
+    height: 50%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blue; */
+    border-radius: 10px;
+}
