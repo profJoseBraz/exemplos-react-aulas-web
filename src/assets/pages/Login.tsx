@@ -1,10 +1,10 @@
 import { CSSProperties, ChangeEvent, useState } from "react";
 import MyButton from "../components/MyButton";
-import MyInput from "../components/MyInput";    
+import MyInput from "../components/MyInput";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import './Login.css'
-import Style from "./Login.module.css"
+import Style from "./Login.module.css";
 
 function Login() {
     const [user, setUser] = useState("");
@@ -36,48 +36,56 @@ function Login() {
             setLoginFail(false);
         }
     };
-    
+
     return (
         <div className={Style.LoginContainer}>
             <div className={Style.LoginForm}>
                 <MyInput
                     type="text"
                     placeholder="Usuário"
+                    placeholderFocusedColor="white"
                     onChange={handleUserOnChange}
                     value={loginFail ? "" : user}
                     style={{
-                        width: '500px', 
-                        height: '50px', 
-                        backgroundColor: '#f0f0f0'
+                        width: "500px",
+                        height: "50px",
+                        backgroundColor: "#f0f0f0",
+                        margin: "5px"
                     }}
                     focusStyle={{
-                        backgroundColor: 'red',
+                        backgroundColor: "gray",
+                        color: "white",
                     }}
                 />
 
                 <MyInput
                     type="password"
                     placeholder="Senha"
+                    placeholderFocusedColor="white"
                     onChange={handlePasswordOnChange}
                     value={loginFail ? "" : password}
                     style={{
-                        width: '500px', 
-                        height: '50px', 
-                        backgroundColor: '#f0f0f0'
+                        width: "500px",
+                        height: "50px",
+                        backgroundColor: "#f0f0f0",
+                        margin: "100px 0"
                     }}
                     focusStyle={{
-                        backgroundColor: 'red',
+                        backgroundColor: "gray",
+                        color: "white",
                     }}
                 />
 
-                <MyButton 
+                <MyButton
                     onClick={handleOnClick}
                     style={{
-                        fontSize: '20px',
-                        width: 'fit-content',
-                        backgroundColor: '#f0f0f0'
+                        width: "200px",
+                        backgroundColor: "#f0f0f0",
+                        margin: "5px"
                     }}
-                >Entrar</MyButton>
+                >
+                    Entrar
+                </MyButton>
             </div>
         </div>
     );

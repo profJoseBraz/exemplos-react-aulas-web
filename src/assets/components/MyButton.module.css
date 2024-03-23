@@ -1,14 +1,13 @@
-.MyButton{
+.MyButton {
     border: none;
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
     transition: 0.5s;
-    margin: 10px;
     width: fit-content;
     height: fit-content;
 }
 
-.MyButton:hover{
+.MyButton:hover {
     transform: scale(1.05);
 }

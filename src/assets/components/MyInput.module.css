@@ -1,10 +1,14 @@
-.MyInput{
+.MyInput {
     width: fit-content;
     height: fit-content;
-    margin: 10px;
     border-radius: 10px;
     text-indent: 10px;
     border: none;
     outline: none;
     transition: 0.5s;
+    font-size: 18px;
+}
+
+.MyInput:focus::placeholder {
+    color: var(--placeholder-color);
 }

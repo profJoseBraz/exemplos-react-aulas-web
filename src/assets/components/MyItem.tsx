@@ -19,36 +19,35 @@ interface Props {
 function MyItem(props: Props) {
     return (
         <>
-            <div
-                className={
-                    props.toRemove ? style.MyItemRemoved : style.MyItemContainer
-                }
-            >
-                <div
-                    className={style.MyItem}
-                    style={{ backgroundColor: `${props.bgColorSelected}` }}
-                >
-                    <div
-                        className={style.MyItemDescription}
-                        onClick={props.onSelectItem}
-                    >
-                        <h1
-                            className={
-                                props.isChecked
-                                    ? style.MyItemChecked
-                                    : style.MyItemUnchecked
-                            }
-                            key={props.keyValue}
-                        >
+            <div className={props.toRemove ? style.MyItemRemoved : style.MyItemContainer}>
+                <div className={style.MyItem} style={{ backgroundColor: `${props.bgColorSelected}` }}>
+                    <div className={style.MyItemDescription} onClick={props.onSelectItem}>
+                        <h2 className={props.isChecked ? style.MyItemChecked : style.MyItemUnchecked} key={props.keyValue}>
                             {props.children}
-                        </h1>
+                        </h2>
                     </div>
 
                     <div className={style.MyItemButtons}>
-                        <MyButton onClick={props.onCheckItem} width="70px">
+                        
+                        <MyButton 
+                            onClick={props.onCheckItem} 
+                            style={{
+                                width: "70px",
+                                fontSize: "18px",
+                                margin: "5px"
+                            }}
+                        >
                             ok
                         </MyButton>
-                        <MyButton onClick={props.onRemoveItem} width="70px">
+                        
+                        <MyButton 
+                            onClick={props.onRemoveItem} 
+                            style={{
+                                width: "70px",
+                                fontSize: "18px",
+                                margin: "5px"
+                            }}
+                        >
                             rm
                         </MyButton>
                     </div>

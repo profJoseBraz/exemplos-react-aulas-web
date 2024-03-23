@@ -5,7 +5,8 @@ interface Props {
     type: string;
     value?: string;
     placeholder?: string;
-    
+    placeholderFocusedColor: string;
+
     style?: CSSProperties;
     focusStyle?: CSSProperties;
 
@@ -25,15 +26,10 @@ function MyInput(props: Props) {
         setIsFocused(false);
     };
 
-    // const placeHolder = `::placeholder {${
-    //     isFocused
-    //         ? `color: red`
-    //         : `color: blue`
-    // }}`;
-
-    const combinedStyle: CSSProperties = {
+    const styles = {
         ...props.style,
         ...(isFocused && props.focusStyle),
+        "--placeholder-color": `${props.placeholderFocusedColor}`,
     };
 
     return (
@@ -42,14 +38,20 @@ function MyInput(props: Props) {
                 className={style.MyInput}
                 type={props.type}
                 placeholder={props.placeholder}
-                style={combinedStyle}
+                style={styles}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={props.onChange}
                 value={props.value}
             />
 
-            {/* <style>{placeHolder}</style> */}
+            <style>
+                {` 
+                    :focus::placeholder { 
+                        color: ${props.placeholderFocusedColor}; 
+                    }`
+                }
+            </style>
         </>
     );
 }

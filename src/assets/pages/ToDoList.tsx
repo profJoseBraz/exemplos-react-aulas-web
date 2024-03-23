@@ -164,9 +164,17 @@ function ToDoList() {
                 <div className="items">
                     <div className="title">
                         {/* <h1>Meus itens</h1> */}
-                        <MyTitle>Meus itens</MyTitle>
+                        <MyTitle
+                            style={{fontSize: "24px"}}
+                        >
+                            Meus itens
+                        </MyTitle>
                         {/* <h1>Itens adicionados: {items.length}</h1> */}
-                        <MyCount>
+                        <MyCount
+                            style={{
+                                fontSize:"24px"
+                            }}
+                        >
                             Itens adicionados:{" "}
                             {items.length > 0 ? items.length : "Lista vazia"}
                         </MyCount>
@@ -186,7 +194,8 @@ function ToDoList() {
                                     handleOnRemoveItem(index)
                                     /*handleOnRemoveItemSimple(index);*/
                                 }}
-                            >{item}
+                            >
+                                {item}
                             </MyItem>
                         </div>
                     ))}
