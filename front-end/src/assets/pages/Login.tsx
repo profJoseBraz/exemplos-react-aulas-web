@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 // import './Login.css'
 import Style from "./Login.module.css";
 import axios from "axios";
+import { setSessionInfo } from '../global/sessionInfo'
 
 function Login() {
     const [user, setUser] = useState("");
@@ -25,22 +26,27 @@ function Login() {
         setPassword(e.target.value);
     };
 
-    async function getUsers(){
+    async function authUser(userName: string): Promise<boolean>{
         try{
-            const res = await axios.get("http://localhost:8080");
-            alert(res.data);
-        }catch{Error}{
-            alert("Nenhum usuário encontrado");
+            const res = await axios.get(`http://localhost:8080/users/username/${userName}`);
+
+            if(user === res.data.name && password === res.data.password){
+                setSessionInfo(user);
+                return true;
+            }else{
+                return false;
+            }
+        }catch(error: any){
+            console.log(`Erro ao processar a requisição: ${error}`);
+            return false;
         }
     }
     
-    const handleOnClick = () => {
-        getUsers();
-
-        if (user === "jose" && password === "1234") {
-            setCookie("auth", "josé");
-            navigate("/to-do-list"); //necessita da dependência 'react-router-dom'
-        } else {
+    const handleOnClick = async () => {
+        if (await authUser(user)){
+            setCookie("auth", user);
+            navigate("/to-do-list");
+        }else{
             setLoginFail(true);
             setUser("");
             setPassword("");
@@ -59,7 +65,7 @@ function Login() {
                     onChange={handleUserOnChange}
                     value={loginFail ? "" : user}
                     style={{
-                        width: "500px",
+                        width: "70%",
                         height: "50px",
                         backgroundColor: "#f0f0f0",
                         margin: "5px"
@@ -77,7 +83,7 @@ function Login() {
                     onChange={handlePasswordOnChange}
                     value={loginFail ? "" : password}
                     style={{
-                        width: "500px",
+                        width: "70%",
                         height: "50px",
                         backgroundColor: "#f0f0f0",
                         margin: "100px 0"
@@ -91,7 +97,7 @@ function Login() {
                 <MyButton
                     onClick={handleOnClick}
                     style={{
-                        width: "200px",
+                        width: "30%",
                         backgroundColor: "#f0f0f0",
                         margin: "5px"
                     }}

@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import MyButton from "./MyButton";
 import MyInput from "./MyInput";
-import "./MyMiniForm.css";
+import style from "./MyMiniForm.module.css";
 
 interface Props {
     inputValue: string;
@@ -12,7 +12,7 @@ interface Props {
 
 function MyMiniForm({ inputValue, onButtonClick, onInputChange }: Props) {
     return (
-        <div className="form-container">
+        <div className={style.formContainer}>
             <MyInput
                 type="text"
                 placeholder="Digite algo"

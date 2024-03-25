@@ -6,6 +6,7 @@ import MyTitle from "../components/MyTitle";
 import MyCount from "../components/MyCount";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { getSessionInfo } from "../global/sessionInfo";
 
 function ToDoList() {
     
@@ -47,7 +48,7 @@ function ToDoList() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (cookies["auth"] !== "josé") {
+        if (cookies["auth"] !== getSessionInfo().user) {
             // Se não estiver, redirecione o usuário de volta para a página de login
             // alert("Realize o login para continuar!")
             navigate("/");
@@ -153,12 +154,15 @@ function ToDoList() {
 
     return (
         <div className="to-do-list">
-            <MyMiniForm
-                onButtonClick={handleFormSubmit}
-                onInputChange={handleOnInputChange}
-                inputValue={newItem.length > 0 ? newItem : ""}
-            />
-
+            <div className="form-container">
+                <MyMiniForm
+                    onButtonClick={handleFormSubmit}
+                    onInputChange={handleOnInputChange}
+                    inputValue={newItem.length > 0 ? newItem : ""}
+                />
+            </div>
+            
+            {/* <h1>Usuário logado: {getSessionInfo().user}</h1> */}
             <div className="items-container">
                 {/* {items.length > 0 && ( */}
                 <div className="items">

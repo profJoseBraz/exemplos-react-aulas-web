@@ -5,3 +5,5 @@ Para este projeto utilizaremos as seguintes dependências:
     * MySql: utilizado para realizar a conexão com o banco de dados MySql.
 
     * Nodemon: utilizado para realizar a reinicialização automática do servidor quando forem detectadas mudanças no código. É semelhante ao refresh automático do vite (HMR) quando alterações são feitas no front-end.
+
+    * Cors: utilizado para fazer requisições para o próprio IP
