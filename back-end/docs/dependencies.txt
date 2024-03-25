@@ -1,7 +1,7 @@
 Para este projeto utilizaremos as seguintes dependências:
 
-    Express: utilizado para lidar com a lógica do servidor da aplicação. Ele permite a criação de rotas, manipulação de solicitações HTTP (GET, POST, PUT, DELETE).
+    * Express: utilizado para lidar com a lógica do servidor da aplicação. Ele permite a criação de rotas, manipulação de solicitações HTTP (GET, POST, PUT, DELETE).
 
-    MySql: utilizado para realizar a conexão com o banco de dados MySql.
+    * MySql: utilizado para realizar a conexão com o banco de dados MySql.
 
-    Nodemon: utilizado para realizar a reinicialização automática do servidor quando forem detectadas mudanças no código. É semelhante ao refresh automático do vite (HMR) quando alterações são feitas no front-end.
+    * Nodemon: utilizado para realizar a reinicialização automática do servidor quando forem detectadas mudanças no código. É semelhante ao refresh automático do vite (HMR) quando alterações são feitas no front-end.

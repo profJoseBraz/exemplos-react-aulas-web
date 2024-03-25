@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import './Login.css'
 import Style from "./Login.module.css";
+import axios from "axios";
 
 function Login() {
     const [user, setUser] = useState("");
@@ -24,7 +25,18 @@ function Login() {
         setPassword(e.target.value);
     };
 
+    async function getUsers(){
+        try{
+            const res = await axios.get("http://localhost:8080");
+            alert(res.data);
+        }catch{Error}{
+            alert("Nenhum usuário encontrado");
+        }
+    }
+    
     const handleOnClick = () => {
+        getUsers();
+
         if (user === "jose" && password === "1234") {
             setCookie("auth", "josé");
             navigate("/to-do-list"); //necessita da dependência 'react-router-dom'
