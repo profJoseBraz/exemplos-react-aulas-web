@@ -1,0 +1,22 @@
+* O banco de dados utilizado para este projeto é o MySql
+
+==========================================================================================================================
+
+* Após a criação do banco de dados:
+
+    -> Mudar o tipo de altenticação para "native password" com o seguinte comando SQL:
+        -> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin'
+
+==========================================================================================================================
+
+* Scripts de criação de tabelas:
+
+    Tabela de usuários:
+    
+        create table user(
+            id integer  primary key,
+            name varchar(100) not null,
+            password varchar(100) not null
+        )
+
+==========================================================================================================================
