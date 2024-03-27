@@ -45,7 +45,7 @@ function Login() {
     const handleOnClick = async () => {
         if (await authUser(user)){
             setCookie("auth", user);
-            navigate("/to-do-list");
+            navigate("/exemplos-react-aulas-web/to-do-list");
         }else{
             setLoginFail(true);
             setUser("");
