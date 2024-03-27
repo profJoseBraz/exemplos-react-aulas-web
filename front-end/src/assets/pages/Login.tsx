@@ -1,4 +1,4 @@
-import { CSSProperties, ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ function Login() {
     const [loginFail, setLoginFail] = useState(false);
 
     //Necessita da dependência 'react-cookie'
-    const [cookie, setCookie, removeCookie] = useCookies(["auth"]);
+    const [, setCookie,] = useCookies(["auth"]);
 
     const navigate = useNavigate();
 

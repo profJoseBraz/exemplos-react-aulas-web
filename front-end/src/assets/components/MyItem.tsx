@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import style from "./MyItem.module.css";
 import MyButton from "./MyButton";
 
