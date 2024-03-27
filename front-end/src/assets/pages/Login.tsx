@@ -30,8 +30,7 @@ function Login() {
         try{
             const res = await axios.get(`http://localhost:8080/users/username/${userName}`);
 
-            // if(user === res.data.name && password === res.data.password){
-            if(user === "jose" && password === "1234"){
+            if(user === res.data.name && password === res.data.password){
                 setSessionInfo(user);
                 return true;
             }else{
