@@ -1,12 +1,12 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, /*useEffect,*/ useState } from "react";
 import "./ToDoList.css";
 import MyMiniForm from "../components/MyMiniForm";
 import MyItem from "../components/MyItem";
 import MyTitle from "../components/MyTitle";
 import MyCount from "../components/MyCount";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import { getSessionInfo } from "../global/sessionInfo";
+// import { useCookies } from "react-cookie";
+// import { useNavigate } from "react-router-dom";
+// import { getSessionInfo } from "../global/sessionInfo";
 
 function ToDoList() {
     
@@ -44,16 +44,16 @@ function ToDoList() {
         setNewItem(e.target.value);
     };
 
-    const [cookies] = useCookies(["auth"]);
-    const navigate = useNavigate();
+    // const [cookies] = useCookies(["auth"]);
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        if (cookies["auth"] !== getSessionInfo().user) {
-            // Se não estiver, redirecione o usuário de volta para a página de login
-            // alert("Realize o login para continuar!")
-            navigate("/");
-        }
-    },[cookies, navigate])
+    // useEffect(() => {
+    //     if (cookies["auth"] !== getSessionInfo().user) {
+    //         // Se não estiver, redirecione o usuário de volta para a página de login
+    //         // alert("Realize o login para continuar!")
+    //         navigate("/");
+    //     }
+    // },[cookies, navigate])
 
     //Manipuador do evento de clique no botão do componente MyMiniForm 
     const handleFormSubmit = () => {
