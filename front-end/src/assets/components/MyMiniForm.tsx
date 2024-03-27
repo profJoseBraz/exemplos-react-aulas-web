@@ -2,25 +2,28 @@ import { ChangeEvent } from "react";
 import MyButton from "./MyButton";
 import MyInput from "./MyInput";
 import style from "./MyMiniForm.module.css";
+import { CSSProperties } from "styled-components";
 
 interface Props {
     inputValue: string;
+
+    style?: CSSProperties;
 
     onButtonClick: () => void;
     onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function MyMiniForm({ inputValue, onButtonClick, onInputChange }: Props) {
+function MyMiniForm(props : Props) {
     return (
-        <div className={style.formContainer}>
+        <div className={style.formContainer} style={props.style}>
             <MyInput
                 type="text"
                 placeholder="Digite algo"
                 placeholderFocusedColor="white"
-                onChange={onInputChange}
-                value={inputValue}
+                onChange={props.onInputChange}
+                value={props.inputValue}
                 style={{
-                    width: "500px",
+                    width: "100%",
                     height: "50px",
                     fontSize: "18px",
                     margin: "10px 5px"
@@ -31,7 +34,7 @@ function MyMiniForm({ inputValue, onButtonClick, onInputChange }: Props) {
                 }}
             />
             <MyButton 
-                onClick={onButtonClick} 
+                onClick={props.onButtonClick} 
                 style={{ 
                     height: "50px",
                     fontSize: "18px"

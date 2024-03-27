@@ -51,7 +51,7 @@ function ToDoList() {
         if (cookies["auth"] !== getSessionInfo().user) {
             // Se não estiver, redirecione o usuário de volta para a página de login
             // alert("Realize o login para continuar!")
-            navigate("/");
+            navigate("/exemplos-react-aulas-web");
         }
     },[cookies, navigate])
 
@@ -156,6 +156,9 @@ function ToDoList() {
         <div className="to-do-list">
             <div className="form-container">
                 <MyMiniForm
+                    style={{
+                        width: "80%"
+                    }}
                     onButtonClick={handleFormSubmit}
                     onInputChange={handleOnInputChange}
                     inputValue={newItem.length > 0 ? newItem : ""}
