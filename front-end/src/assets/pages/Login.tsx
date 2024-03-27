@@ -14,7 +14,7 @@ function Login() {
     const [loginFail, setLoginFail] = useState(false);
 
     //Necessita da dependência 'react-cookie'
-    const [, setCookie,] = useCookies(["auth"]);
+    const [,setCookie,] = useCookies(["auth"]);
 
     const navigate = useNavigate();
 
