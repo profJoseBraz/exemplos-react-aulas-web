@@ -23,10 +23,9 @@ function MyMiniForm(props : Props) {
                 onChange={props.onInputChange}
                 value={props.inputValue}
                 style={{
-                    width: "100%",
-                    height: "50px",
-                    fontSize: "18px",
-                    margin: "10px 5px"
+                    width: "fit-content",
+                    height: "fit-content",
+                    margin: "10px"
                 }}
                 focusStyle={{
                     backgroundColor: "#8b129d",
@@ -36,8 +35,9 @@ function MyMiniForm(props : Props) {
             <MyButton 
                 onClick={props.onButtonClick} 
                 style={{ 
-                    height: "50px",
-                    fontSize: "18px"
+                    width: "fit-content",
+                    height: "fit-content",
+                    // margin: "10px"
                 }}
             >
                 adicionar

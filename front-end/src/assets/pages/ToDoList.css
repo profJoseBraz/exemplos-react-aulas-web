@@ -62,12 +62,16 @@
 .footer {
     background-color: #280035;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-    height: 100px;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: center;
     padding: 10px;
     color: white;
+}
+
+.footer p {
+    font-size: 2vw;
 }
 
 /* Mudar para novo componente de alert */
@@ -114,5 +118,12 @@
     to {
         opacity: 0;
         visibility: hidden;
+    }
+}
+
+
+@media (max-width: 300px) {
+    * {
+        font-size: 10px !important;
     }
 }

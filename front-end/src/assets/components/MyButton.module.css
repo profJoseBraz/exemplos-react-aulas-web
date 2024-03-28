@@ -4,8 +4,7 @@
     padding: 10px;
     cursor: pointer;
     transition: 0.5s;
-    width: fit-content;
-    height: fit-content;
+    font-size: 2vw;
 }
 
 .MyButton:hover {

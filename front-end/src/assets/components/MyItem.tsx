@@ -32,8 +32,8 @@ function MyItem(props: Props) {
                         <MyButton 
                             onClick={props.onCheckItem} 
                             style={{
-                                width: "70px",
-                                fontSize: "18px",
+                                width: "50%",
+                                // fontSize: "18px",
                                 margin: "5px"
                             }}
                         >
@@ -43,8 +43,8 @@ function MyItem(props: Props) {
                         <MyButton 
                             onClick={props.onRemoveItem} 
                             style={{
-                                width: "70px",
-                                fontSize: "18px",
+                                width: "50%",
+                                // fontSize: "18px",
                                 margin: "5px"
                             }}
                         >

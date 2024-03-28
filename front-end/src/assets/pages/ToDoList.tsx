@@ -157,7 +157,8 @@ function ToDoList() {
             <div className="form-container">
                 <MyMiniForm
                     style={{
-                        width: "80%"
+                        width: "50%",
+                        height: "auto"
                     }}
                     onButtonClick={handleFormSubmit}
                     onInputChange={handleOnInputChange}
@@ -172,14 +173,14 @@ function ToDoList() {
                     <div className="title">
                         {/* <h1>Meus itens</h1> */}
                         <MyTitle
-                            style={{fontSize: "24px"}}
+                            // style={{fontSize: "18px"}}
                         >
                             Meus itens
                         </MyTitle>
                         {/* <h1>Itens adicionados: {items.length}</h1> */}
                         <MyCount
                             style={{
-                                fontSize:"24px"
+                                // fontSize:"18px"
                             }}
                         >
                             Itens adicionados:{" "}
