@@ -71,7 +71,7 @@
 }
 
 .footer p {
-    font-size: 2vw;
+    font-size: 1vw;
 }
 
 /* Mudar para novo componente de alert */
@@ -122,8 +122,8 @@
 }
 
 
-@media (max-width: 300px) {
+/* @media (max-width: 300px) {
     * {
         font-size: 10px !important;
     }
-}
+} */
